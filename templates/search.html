@@ -12,14 +12,22 @@
       <button><a href="login.html">Log In</a></button>
     </div>
 
-    <label class="ingredient-label" for="ingredient">Enter Ingredients:</label>
-    <div class="search">
-      <input id="ingredient" type="text" placeholder="e.g. chicken, potato, garlic">
-      <a href="capture.html"><img src="static\css\camera.png" alt=""></a>
-    </div>
+    <form class="form" action="/search" method="post">
+      <label class="ingredient-label" for="ingredient">Enter Ingredients:</label>
 
-    <div class="submit">
-      <input class="generate" type="submit" value="Generate">
-    </div>
+      <div class="search">
+        <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken, potato, garlic">
+        <a href="capture.html"><img src="static\css\camera.png" alt=""></a>
+      </div>
+
+      <div class="submit">
+        <input class="generate" type="submit" value="Generate">
+      </div>
+    </form>
+
+    {% for meal in results %}
+      <p>{{ meal["strMeal"] }}</p>
+    {% endfor %}
+
 </body>
 </html>
