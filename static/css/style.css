@@ -2,6 +2,15 @@ h1{
   text-align: center;
 }
 
-input[type = "text"]{
-  text-align: center;
+.login{
+  display: flex;
+  flex-direction: column;
+}
+
+.login input[type="text"]{
+  width: 10rem;
+}
+
+.login input[type="submit"]{
+  width: 3rem;
 }
