@@ -7,6 +7,10 @@ body{
   background-color: #FFE5D1;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+a{
+  text-decoration: none;
+}
 /* INDEX */
 .index{
   text-align: center;
@@ -50,6 +54,31 @@ body{
     bottom: 30px;
   }
 }
+
+/* SEARCH */
+.search:{
+  text-align: center;
+}
+
+.search input[type="text"]{
+  width: 20rem;
+  height: 2rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+
+.search input[type="submit"]{
+  padding: 0.5rem;
+  background-color: #E4994D;
+  border-radius: 10px;
+}
+
+.search input[type="submit"]:hover{
+  background-color: #c68747;
+  cursor: pointer;
+}
+
+
 
 .login{
   display: flex;
