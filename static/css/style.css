@@ -56,8 +56,40 @@ a{
 }
 
 /* SEARCH */
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.header button{
+  height: 1.5rem;
+  position: relative;
+  top: 3.5rem;
+  left: 1rem;
+  border-radius: 5px;
+}
+
+.header button:hover{
+  background-color: #b7b6b6;
+  cursor: pointer;
+}
+
 .search{
   text-align: center;
+  margin-top: -15px;
+}
+
+.search img{
+  width: 3rem;
+  position: relative;
+  top: 1rem;
+}
+
+.search img:hover{
+  scale: 1.1;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
 }
 
 .search input[type="text"]{
@@ -67,28 +99,52 @@ a{
   border-radius: 0.5rem;
 }
 
-.search input[type="submit"]{
-  padding: 0.5rem;
-  background-color: #E4994D;
-  border-radius: 10px;
+.submit{
+  text-align: center;
+  padding-top: 0.5rem;
 }
 
-.search input[type="submit"]:hover{
+.generate{
+  padding: 0.5rem;
+  background-color: #E4994D;
+  color: antiquewhite;
+  font-weight: bold;
+  font-size: large;
+  border-radius: 10px;
+  width: 15rem;
+  margin-right: 3.5rem;
+}
+
+.generate:hover{
   background-color: #c68747;
   cursor: pointer;
 }
 
 
-
+/* LOGIN */
 .login{
   display: flex;
   flex-direction: column;
 }
 
-.login input[type="text"]{
+.login input[type="text"], .login input[type="password"]{
   width: 10rem;
 }
 
 .login input[type="submit"]{
-  width: 3rem;
+  width: 5rem;
+}
+
+/* REGISTER */
+.register{
+  display: flex;
+  flex-direction: column;
+}
+
+.register input[type="text"], .register input[type="password"]{
+  width: 10rem;
+}
+
+.register input[type="submit"]{
+  width: 5rem;
 }
