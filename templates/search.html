@@ -7,13 +7,19 @@
   <title>Recipe Search</title>
 </head>
 <body>
-  <h1><a href="search.html">SnapDish</a></h1>
-  <button><a href="login.html">Log In</a></button>
+    <div class="header">
+      <h1><a href="search.html">SnapDish</a></h1>
+      <button><a href="login.html">Log In</a></button>
+    </div>
 
-  <div class="search">
-    <p>Enter ingredients:</p>
-    <input type="text">
-    <input type="submit" value="Generate">
-  </div>
+    <label class="ingredient-label" for="ingredient">Enter Ingredients:</label>
+    <div class="search">
+      <input id="ingredient" type="text" placeholder="e.g. chicken, potato, garlic">
+      <a href="capture.html"><img src="static\css\camera.png" alt=""></a>
+    </div>
+
+    <div class="submit">
+      <input class="generate" type="submit" value="Generate">
+    </div>
 </body>
 </html>
