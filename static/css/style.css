@@ -382,3 +382,9 @@ login-button:hover {
 @keyframes typing {
   from {width: 0}
 }
+
+/* Search buttons (my fridge, logout) */
+
+.logout-btn{
+  margin-top: 20px;
+}

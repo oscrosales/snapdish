@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static\css\style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <title>Dashboard</title>
 </head>
 <body>
     <h1>Welcome, {{ current_user.username }}!</h1>
     <p>This is your dashboard.</p>
+    
     <a href="{{ url_for('search') }}">Search for recipes!</a>
-    <a href="{{ url_for('index') }}">Logout</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+
+    <h2>My Saved Recipes</h2>
+    {% if saved_recipes %}
+        <ul>
+            {% for item in saved_recipes %}
+                <li>
+                    <img src="{{ item.meal_image }}" alt="{{ item.meal_name }}" width="100">
+                    <a href="{{ url_for('recipe', id=item.meal_id) }}">{{ item.meal_name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No saved recipes yet.</p>
+    {% endif %}
 </body>
 </html>

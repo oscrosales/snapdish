@@ -30,9 +30,15 @@
 
       <img src="{{ image }}" alt="A picture of {{ name }}">
 
+      <!-- If user is logged in, show fridge button :) -->
       {% if current_user.is_authenticated %}
-      <button>Add to fridge</button>
+      <form action="{{ url_for('add_to_fridge', meal_id=id, meal_name=name|urlencode, meal_image=image|urlencode) }}" method="post">
+        <button type="submit">Add to fridge</button>
+      </form>
       {% endif %}
+      
+
+    
     
     
       <h3>Ingredients</h3>

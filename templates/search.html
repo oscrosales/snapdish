@@ -11,8 +11,9 @@
       <h1><a href="/search">SnapDish</a></h1>
 
       {% if current_user.is_authenticated %}
-      <span class="username">Welcome, {{ current_user.username}}</span>
-      <button class="logout-btn"><a href="{{ url_for('logout' )}}">Logout</a></button>
+      <span class="username">Welcome, {{ current_user.username }}</span>
+        <button class="myfridge-btn"><a href="{{ url_for('dashboard') }}">My Fridge</a></button>
+        <button class="logout-btn"><a href="{{ url_for('logout') }}">Logout</a></button>
       {% else %}
       <button class="login-btn"><a href="/login">Log In</a></button>
       {% endif %}

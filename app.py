@@ -19,7 +19,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flaskuser:flaskp
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'my-secret-key'  # Change this in production
 
-
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
@@ -30,6 +29,38 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
+
+# Fridge Model
+class FridgeItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    meal_id = db.Column(db.String(50), nullable=False)
+    meal_name = db.Column(db.String(200), nullable=False)
+    meal_image = db.Column(db.String(500), nullable=True)
+
+    user = db.relationship('User', backref=db.backref('fridge_items', lazy=True))
+
+@app.route('/add_to_fridge/<meal_id>/<meal_name>/<meal_image>', methods=['POST'])
+@login_required
+def add_to_fridge(meal_id, meal_name, meal_image):
+    print(f"Adding meal_id: {meal_id}, meal_name: {meal_name}, meal_image: {meal_image}")  # Debugging line
+
+    if FridgeItem.query.filter_by(user_id=current_user.id, meal_id=meal_id).first():
+        flash('Recipe already in fridge!', 'warning')
+        return redirect(url_for('recipe', id=meal_id))
+
+    new_item = FridgeItem(user_id=current_user.id, meal_id=meal_id, meal_name=meal_name, meal_image=meal_image)
+    db.session.add(new_item)
+    
+    try:
+        db.session.commit()
+        flash('Recipe added to fridge!', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Error adding recipe to fridge: {str(e)}', 'danger')
+    
+    return redirect(url_for('recipe', id=meal_id))
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -42,7 +73,7 @@ class FoodAPI():
 
         self.meals = []
 
-        for char in self.user_input: # replace space with _
+        for char in self.user_input:  # replace space with _
             if char == ' ':
                 char = '_'
 
@@ -51,11 +82,11 @@ class FoodAPI():
         self.allMeals()
 
     def allMeals(self):
-        url = "https://www.themealdb.com/api/json/v1/1/" + self.ingredient # searches the web with specific ingredient
+        url = "https://www.themealdb.com/api/json/v1/1/" + self.ingredient  # searches the web with specific ingredient
         response = requests.get(url)
         data = response.json()
 
-        if data['meals'] != None: # add all meals and id's in a list
+        if data['meals'] is not None:  # add all meals and id's in a list
             meal = data['meals'][0]
             self.meal_name = []
             self.meal_id = []
@@ -71,9 +102,9 @@ class FoodAPI():
             return
 
     def getAllMeals(self):
-        if self.foundMeal == True:
+        if self.foundMeal:
             self.foodList = []
-            if (len(self.meal_name) >= 5):
+            if len(self.meal_name) >= 5:
                 while len(self.foodList) < 5:
                     random_meal = random.choice(self.meal_name)
                     if random_meal not in self.foodList:
@@ -99,9 +130,15 @@ class FoodAPI():
 
         self.meal_ingredient = []
         for i in range(1, 21):
-            ingredient = meal[f'strMeasure{i}'] + " " + meal[f'strIngredient{i}']
-            if ingredient and ingredient.strip() != "":
-                self.meal_ingredient.append(ingredient)
+            measure = meal.get(f'strMeasure{i}')
+            ingredient = meal.get(f'strIngredient{i}')
+
+            # Only concatenate if both are not None
+            if measure and ingredient:
+                ingredient_string = f"{measure} {ingredient}".strip()
+                if ingredient_string:
+                    self.meal_ingredient.append(ingredient_string)
+
 
 # Current users
 @app.context_processor
@@ -177,7 +214,9 @@ def login():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    saved_recipes = FridgeItem.query.filter_by(user_id=current_user.id).all()
+    return render_template('dashboard.html', saved_recipes=saved_recipes)
+
 
 @app.route('/logout')
 @login_required
@@ -190,4 +229,4 @@ def logout():
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()
-    app.run(debug = True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0")
