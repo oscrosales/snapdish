@@ -8,14 +8,17 @@
 </head>
 <body>
     <div class="header">
-      <h1><a href="/search"><span><img src="static\css\logo.png" alt="" class="search-logo"></span>SnapDish</a></h1>
+      <a href="/search" id="snapdish-search-txt"><span><img src="static\css\logo.png" alt="" class="search-logo"></span>SnapDish</a>
 
       {% if current_user.is_authenticated %}
-      <span class="username">Welcome, {{ current_user.username }}</span>
-        <button class="myfridge-btn"><a href="{{ url_for('dashboard') }}">My Fridge</a></button>
-        <button class="logout-btn"><a href="{{ url_for('logout') }}">Logout</a></button>
+      <span class="username welcome-text">Welcome, {{ current_user.username }}</span>
+        <div class="right-links">
+          <a href="{{ url_for('dashboard') }}">My Fridge</a>
+          <a href="{{ url_for('logout') }}">Log out</a>
+        </div>
+
       {% else %}
-      <button class="login-btn"><a href="/login">Log In</a></button>
+      <a href="/login" class="login-btn right-links">Log In</a>
       {% endif %}
     </div>
 
@@ -24,7 +27,7 @@
       <label class="ingredient-label" for="ingredient">Enter an Ingredient:</label>
 
       <div class="search">
-        <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken, potatoes, garlic">
+        <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken">
         <a href="capture.html"><img src="static\css\camera.png" alt=""></a>
       </div>
 
@@ -37,12 +40,21 @@
       {% if meal_ids %}
       <h1>Recipes:</h1>
       <ul>
+        {% if meal_ids|length >= 5 %}
           {% for i in range(5) %}
               <li class="recipe">
                   <a class="meal-name" href="{{ url_for('recipe', id=meal_ids[i]) }}">{{ meal_names[i] }}</a><br>
                   <a href="{{ url_for('recipe', id=meal_ids[i]) }}">view full recipe</a>
               </li>
           {% endfor %}
+        {% else %}
+          {% for i in range(meal_ids|length) %}
+          <li class="recipe">
+            <a class="meal-name" href="{{ url_for('recipe', id=meal_ids[i]) }}">{{ meal_names[i] }}</a><br>
+            <a href="{{ url_for('recipe', id=meal_ids[i]) }}">view full recipe</a>
+          </li>
+          {% endfor %}
+        {% endif %}
       </ul>
       {% else %}
             {% if no_results %}

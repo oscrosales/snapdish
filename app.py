@@ -13,6 +13,7 @@ import requests
 import random
 from gtts import gTTS
 import io
+import os
 
 app = Flask(__name__)
 
@@ -144,6 +145,16 @@ class FoodAPI():
                     self.meal_ingredient.append(ingredient_string)
 
 
+def textToSpeech(food: FoodAPI, foodInstruction: str):
+    if food.foundMeal == True:
+        language = 'en'
+        myobj = gTTS(text = str(foodInstruction), lang = language, slow = False)
+
+        myobj.save("foodInstruction.mp3")
+    else:
+        print("Instructions cannot be played")
+
+
 # Current users
 @app.context_processor
 def inject_user():
@@ -178,12 +189,15 @@ def recipe(id):
 
     api.getMeal(id)
 
+    if api.foundMeal == True:
+        textToSpeech(api, api.meal_instructions)
+
     return render_template("recipe.html",
                             name=api.meal_name,
                             image=api.meal_image,
                             category=api.meal_category,
                             ingredients=api.meal_ingredient,
-                            instructions=api.meal_instructions)
+                            instructions=api.meal_instructions.split(". "))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
