@@ -1,8 +1,11 @@
 """
 Title: SnapDish Web Application
-Authors: Oscar Rosales,
-Description:
-Date Created: Feb 21, 2025
+Authors: Oscar Rosales, Cj Jobli, Iya Monterola, Thea Llanes
+Description: This program is accessibility friendly and it uses the webcam or text input to detect an ingredient. Once the ingredient 
+has been detected, the food API pulls out 5 recipes. When we choose a recipe, we are able to use text-to-speech on the instructions.
+We use AI food detection for us to be able to detect an ingredient.
+We created a database for users that registers for the app program.
+Date Created: Feb 21-22, 2025
 """
 
 from flask import Flask, render_template, redirect, url_for, request, flash
@@ -19,7 +22,7 @@ app = Flask(__name__)
 # Database Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flaskuser:flaskpass@localhost/flaskdb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'my-secret-key'  # Change this in production
+app.config['SECRET_KEY'] = 'my-secret-key'
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
@@ -261,6 +264,9 @@ def dashboard():
     saved_recipes = FridgeItem.query.filter_by(user_id=current_user.id).all()
     return render_template('dashboard.html', saved_recipes=saved_recipes)
 
+@app.route('/aboutus')
+def aboutus():
+    return render_template('aboutus.html')
 
 @app.route('/logout')
 @login_required

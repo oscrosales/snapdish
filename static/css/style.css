@@ -530,3 +530,23 @@ login-button:hover {
   transform: translateY(5px); /* Adjust this value to move the icons further down */
   margin-right: 5px;
 }
+
+.groupie{
+  width: 50%;
+}
+
+.container-group{
+  float: left;
+  padding-right: 50px;
+  padding-left: 100px;
+  width: 600px;
+}
+
+
+
+.doge p{
+  text-align: center;
+  color: #000000;
+  font-size: 2em;
+}
+

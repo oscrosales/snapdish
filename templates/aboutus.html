@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="static\css\style.css">
+
+    <!-- google icons api -->
+    <head>
+      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    </head>
+    <title>About Us</title>
+</head>
+<body>
+    <div class="header">
+        <a href="/search" id="snapdish-search-txt"><span></span>About Us</a>
+  
+        {% if current_user.is_authenticated %}
+        <span class="username welcome-text">Welcome, {{ current_user.username }}</span>
+          <div class="right-links">
+            <a href="{{ url_for('dashboard') }}">My Fridge</a>
+            <a href="{{ url_for('logout') }}">Log out</a>
+          </div>
+        {% else %}
+        <a href="/login" class="login-btn right-links">Log In</a>
+        {% endif %}
+      </div>
+  
+      <nav class="navbar">
+        <a href="{{ url_for('search') }}"><span class="material-symbols-outlined icon">home</span>Home</a>
+        <a href="{{ url_for('aboutus') }}"><span class="material-symbols-outlined icon">group</span>About Us</a>
+        <a href=""><span class="material-symbols-outlined icon">storefront</span>Shop</a>
+        <a href=""><span class="material-symbols-outlined icon">contact_support</span>Contact</a>
+      </nav>
+    </header>
+
+
+    <div class="container-group">
+        <h1>Hello World!</h1>
+
+        <div class="doge">
+            <p>This is our first ever hackathon and our last!</p>
+        </div>
+
+        <h4>Thoughts:</h4>
+
+        <h5>Thea: "All nighter just to train AI is insane"</h5>
+        <h5>Oscar: "Almost didn't sleep 💀 the hackathon was very stressful"</h5>
+        <h5>Cj: "Why did I decide to do the account creation 💀💀 I drank 3 caffeinated drinks and I got tricked by the UoM vending machine and charged me $10 for 1 energy drink. Help."</h5>
+        <h5>Iya: "1 hour of sleep on the first day, 3 hours of sleep on the next day. I have two upcoming midterms and yes I am going to sleep right after."</h5>
+
+    </div>
+
+    <img src="static\css\groupie.jpg" alt="" class="groupie">
+
+</body>
+</html>
