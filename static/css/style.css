@@ -411,3 +411,8 @@ login-button:hover {
 .logout-btn{
   margin-top: 20px;
 }
+
+.search-logo{
+  width: 50px;
+  padding-right: 20px;
+}
