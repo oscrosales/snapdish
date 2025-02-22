@@ -11,6 +11,8 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 import requests
 import random
+from gtts import gTTS
+import io
 
 app = Flask(__name__)
 
@@ -51,14 +53,14 @@ def add_to_fridge(meal_id, meal_name, meal_image):
 
     new_item = FridgeItem(user_id=current_user.id, meal_id=meal_id, meal_name=meal_name, meal_image=meal_image)
     db.session.add(new_item)
-    
+
     try:
         db.session.commit()
         flash('Recipe added to fridge!', 'success')
     except Exception as e:
         db.session.rollback()
         flash(f'Error adding recipe to fridge: {str(e)}', 'danger')
-    
+
     return redirect(url_for('recipe', id=meal_id))
 
 
@@ -155,6 +157,7 @@ def search():
         search = request.form["prompt"]
 
         meal_ids, meal_names = FoodAPI(search).allMeals()
+
 
         return render_template("search.html",
                                meal_ids=meal_ids,
