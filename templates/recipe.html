@@ -53,17 +53,15 @@
       </ul>
 
       <h3>Instructions</h3>
+      <audio controls autoplay class="tts">
+        <source src = "{{ url_for('static', filename='foodInstruction.mp3') }}" type = "audio/mpeg">
+        <source src = "{{ url_for('static', filename='foodInstruction.mp3') }}" type = "audio/wav">
+      </audio>
       <ol>
         {% for instruction in instructions %}
           <li>{{ instruction }}.</li>
         {% endfor %}
       </ol>
-      <audio controls autoplay>
-        <source src = "{{ url_for('static', filename='foodInstruction.mp3') }}" type = "audio/mpeg">
-        <source src = "{{ url_for('static', filename='foodInstruction.mp3') }}" type = "audio/wav">
-      </audio>
-
-      <p>{{ instructions }}</p>
     </div>
 </body>
 </html>

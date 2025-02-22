@@ -242,6 +242,10 @@ a {
   font-size: 20px;
 }
 
+.tts {
+  padding-top: 25px;
+}
+
 /* LOGIN */
 /* LOGIN */
 .login {
@@ -449,7 +453,7 @@ login-button:hover {
   font-size: 4em;
   color: rgb(0, 0, 0);
   font-weight: bold;
-  
+
   transition: transform 0.5s;
 }
 
