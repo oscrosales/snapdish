@@ -227,6 +227,11 @@ a {
   max-width: 18rem;
 }
 
+.recipe-wrapper h2 {
+  color: black;
+  margin: 0;
+}
+
 /* LOGIN */
 /* LOGIN */
 .login {
@@ -271,9 +276,9 @@ a {
   margin: 0 auto;
   text-align: center;
   background-color: #E4994D;
-  
-} 
- 
+
+}
+
 h3 {
   color: rgb(255, 255, 255);
   margin-top: 30px;
