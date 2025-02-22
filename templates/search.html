@@ -27,7 +27,7 @@
       <label class="ingredient-label" for="ingredient">Enter an Ingredient:</label>
 
       <div class="search">
-        <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken, potatoes, garlic">
+        <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken">
         <a href="capture.html"><img src="static\css\camera.png" alt=""></a>
       </div>
 
@@ -40,12 +40,21 @@
       {% if meal_ids %}
       <h1>Recipes:</h1>
       <ul>
+        {% if meal_ids|length >= 5 %}
           {% for i in range(5) %}
               <li class="recipe">
                   <a class="meal-name" href="{{ url_for('recipe', id=meal_ids[i]) }}">{{ meal_names[i] }}</a><br>
                   <a href="{{ url_for('recipe', id=meal_ids[i]) }}">view full recipe</a>
               </li>
           {% endfor %}
+        {% else %}
+          {% for i in range(meal_ids|length) %}
+          <li class="recipe">
+            <a class="meal-name" href="{{ url_for('recipe', id=meal_ids[i]) }}">{{ meal_names[i] }}</a><br>
+            <a href="{{ url_for('recipe', id=meal_ids[i]) }}">view full recipe</a>
+          </li>
+          {% endfor %}
+        {% endif %}
       </ul>
       {% else %}
             {% if no_results %}
