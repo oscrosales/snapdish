@@ -8,14 +8,17 @@
 </head>
 <body>
     <div class="header">
-      <h1><a href="/search"><span><img src="static\css\logo.png" alt="" class="search-logo"></span>SnapDish</a></h1>
+      <a href="/search" id="snapdish-search-txt"><span><img src="static\css\logo.png" alt="" class="search-logo"></span>SnapDish</a>
 
       {% if current_user.is_authenticated %}
-      <span class="username">Welcome, {{ current_user.username }}</span>
-        <button class="myfridge-btn"><a href="{{ url_for('dashboard') }}">My Fridge</a></button>
-        <button class="logout-btn"><a href="{{ url_for('logout') }}">Logout</a></button>
+      <span class="username welcome-text">Welcome, {{ current_user.username }}</span>
+        <div class="right-links">
+          <a href="{{ url_for('dashboard') }}">My Fridge</a>
+          <a href="{{ url_for('logout') }}">Log out</a>
+        </div>
+
       {% else %}
-      <button class="login-btn"><a href="/login">Log In</a></button>
+      <a href="/login" class="login-btn right-links">Log In</a>
       {% endif %}
     </div>
 
