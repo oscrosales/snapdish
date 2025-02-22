@@ -151,8 +151,6 @@ def textToSpeech(food: FoodAPI, foodInstruction: str):
         myobj = gTTS(text = str(foodInstruction), lang = language, slow = False)
 
         myobj.save("foodInstruction.mp3")
-
-        os.system("open FoodInstruction.mp3")
     else:
         print("Instructions cannot be played")
 
