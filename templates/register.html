@@ -7,13 +7,19 @@
 
     <title>Register</title>
 </head>
-<body>
-    <h2>Register NOW!</h2>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Register</button>
-    </form>
-    <button><a href="login">Already have an account? Login</a></button>
+<body class = "login-body">
+
+        <div class = "container">
+          <div class = "login-box">
+            <h2>Register Account</h2>
+            <form method="POST" class = "login-form">
+                <input type="text" name="username" placeholder="Username" class="login-input" required>
+                <input type="password" name="password" placeholder="Password" class="login-input" required>
+                <button type="submit" class="generate account-btn-margin">Register</button>
+            </form>
+            <a href="login" class="login-p">Already have an account? Login</a>
+          </div>
+        </div>
+
 </body>
 </html>

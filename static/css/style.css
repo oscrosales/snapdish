@@ -194,6 +194,10 @@ a {
   align-items: center;
 }
 
+.account-btn-margin{
+  margin: 10px 0px;
+}
+
 .generate:hover{
   background-color: #c68747;
   transform: scale(1.05);
@@ -244,10 +248,11 @@ a {
   height: 350px;
   position: relative;
   z-index: 1;
-  background-color: rgb(17, 1, 80);
+  background-color: #E4994D;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   border-radius: 10px;
-  border: 1px solid #fff;
+  border: 2px solid #000000;
+
 }
 
 .container::before {
@@ -265,12 +270,20 @@ a {
   max-width: 250px;
   margin: 0 auto;
   text-align: center;
+  background-color: #E4994D;
+  
 } 
  
 h3 {
   color: rgb(255, 255, 255);
   margin-top: 30px;
   margin-bottom: -20px;
+}
+
+h2{
+  color: #003cff;
+  margin-bottom: -20px;
+
 }
 
 .login-form {
@@ -285,7 +298,7 @@ h3 {
   border: none;
   border-radius: 10px;
   background: transparent;
-  border: 1px solid #fff;
+  border: 2px solid #000000;
   color: #fff;
   font-size: 13px;
 }
@@ -342,7 +355,7 @@ login-button:hover {
 
 #register-here {
   text-decoration: none;
-  color: #ff9d00;
+  color: #006aff;
   font-weight: bold;
 }
 
