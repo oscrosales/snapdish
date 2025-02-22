@@ -48,10 +48,10 @@ class FoodAPI():
 
         self.ingredient = "filter.php?i=" + self.user_input
 
-        self.allMeals(self.ingredient)
+        self.allMeals()
 
-    def allMeals(self, ingredient: str):
-        url = "https://www.themealdb.com/api/json/v1/1/" + ingredient # searches the web with specific ingredient
+    def allMeals(self):
+        url = "https://www.themealdb.com/api/json/v1/1/" + self.ingredient # searches the web with specific ingredient
         response = requests.get(url)
         data = response.json()
 
@@ -64,14 +64,8 @@ class FoodAPI():
                 self.meal_name.append(meal['strMeal'])
                 self.meal_id.append(meal['idMeal'])
 
-
-            count = 0   # print all recipes
-            for food in self.meal_name:
-                foodName = str(count) + ". " + food
-                print(foodName)
-                count += 1
-
             self.foundMeal = True
+            return self.meal_id, self.meal_name
         else:
             self.foundMeal = False
             return
@@ -91,19 +85,6 @@ class FoodAPI():
 
             return self.foodList
 
-
-    def chooseMeal(self):
-        self.foundMeal = False
-        while (self.foundMeal == False):
-                recipe = input("Please choose the number for the recipe you want to see. \n-->")
-                if int(recipe) < len(self.meal_id):
-                    foodID = self.meal_id[int(recipe)]
-                    self.getMeal(foodID)    # get the specific meal that the user chose
-                    self.foundMeal == True
-
-                else:
-                    print("No recipe found. Try again.")
-
     def getMeal(self, foodID: str):
         url1 = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + foodID
         response = requests.get(url1)
@@ -118,7 +99,7 @@ class FoodAPI():
 
         self.meal_ingredient = []
         for i in range(1, 21):
-            ingredient = meal[f'strIngredient{i}']
+            ingredient = meal[f'strMeasure{i}'] + " " + meal[f'strIngredient{i}']
             if ingredient and ingredient.strip() != "":
                 self.meal_ingredient.append(ingredient)
 
@@ -132,11 +113,26 @@ def search():
     if request.method == "POST":
         search = request.form["prompt"]
 
-        api = FoodAPI(search)
+        meal_ids, meal_names = FoodAPI(search).allMeals()
 
-        return render_template("search.html", results=api.getAllMeals())
+        return render_template("search.html",
+                               meal_ids=meal_ids,
+                               meal_names=meal_names)
 
     return render_template("search.html")
+
+@app.route("/recipe/<id>")
+def recipe(id):
+    api = FoodAPI("")
+
+    api.getMeal(id)
+
+    return render_template("recipe.html",
+                            name=api.meal_name,
+                            image=api.meal_image,
+                            category=api.meal_category,
+                            ingredients=api.meal_ingredient,
+                            instructions=api.meal_instructions)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

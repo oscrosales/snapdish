@@ -27,21 +27,17 @@
       </div>
     </form>
 
-    <div class="results">
-      {% if meal_ids %}
-      <h2>Recipes:</h2>
-      <ul>
-          {% for i in range(5) %}
-              <li class="recipe">
-                  <a class="meal-name" href="{{ url_for('recipe', id=meal_ids[i]) }}">{{ meal_names[i] }}</a><br>
-                  <a href="{{ url_for('recipe', id=meal_ids[i]) }}">view full recipe</a>
-              </li>
-          {% endfor %}
-      </ul>
-      {% else %}
-          <p></p>
-      {% endif %}
-    </div>
+    <h2>{{ name }}</h2>
+
+    <img src="{{ image }}" alt="A picture of {{ name }}">
+
+    <ul>
+      {% for ingredient in ingredients %}
+        <li>{{ ingredient }}</li>
+      {% endfor %}
+    </ul>
+
+    <p>{{ instructions }}</p>
 
 </body>
 </html>
