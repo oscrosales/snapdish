@@ -18,6 +18,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://flaskuser:flaskp
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'my-secret-key'  # Change this in production
 
+
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
@@ -77,7 +78,7 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
-        
+
         if User.query.filter_by(username=username).first():
             flash('Username already exists!', 'danger')
             return redirect(url_for('register'))
@@ -85,10 +86,10 @@ def register():
         new_user = User(username=username, password=password)
         db.session.add(new_user)
         db.session.commit()
-        
+
         flash('Registration successful! You can now log in.', 'success')
         return redirect(url_for('login'))
-    
+
     return render_template('register.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -96,16 +97,16 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        
+
         user = User.query.filter_by(username=username).first()
-        
+
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
             flash('Login successful!', 'success')
             return redirect(url_for('dashboard'))
         else:
             flash('Invalid username or password', 'danger')
-    
+
     return render_template('login.html')
 
 @app.route('/dashboard')
