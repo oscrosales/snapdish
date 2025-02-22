@@ -296,13 +296,26 @@ a {
   justify-content: center;
 }
 
-/* .recipe-body {
+.recipe-body {
   display: flex;
   justify-content: center;  
-  align-items: center;      
-  height: 100vh;            
-  margin-top: 200px;                
-} */
+  align-items: center;                
+  margin-top: 5px;                
+}
+
+.name{
+  display: flex;
+  justify-content: center;  
+  align-items: center;                
+  margin-top: 30px;  
+}
+
+.fridge {
+  display: flex;
+  justify-content: center;  
+  align-items: center;                
+}
+
 
 
 .container::before {
