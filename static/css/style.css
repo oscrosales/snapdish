@@ -142,6 +142,11 @@ a {
   border-radius: 0.5rem;
 }
 
+.noresults {
+  font-weight: bold;
+  color: rgb(173, 4, 4);
+}
+
 .submit{
   text-align: center;
   padding-top: 0.5rem;
