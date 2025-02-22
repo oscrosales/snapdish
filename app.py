@@ -193,6 +193,7 @@ def capture():
     cam.release()
 
     cv2.imshow(window_name, photo)
+    cv2.imwrite("food_picture.jpg", photo)
     cv2.setWindowProperty(window_name, cv2.WND_PROP_TOPMOST, 1)
 
     cv2.waitKey(5000)
