@@ -9,7 +9,7 @@
   <head>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
   </head>
-  
+
 
   <title>Recipe Search</title>
 </head>
@@ -40,9 +40,13 @@
       <label class="ingredient-label" for="ingredient">Enter an Ingredient:</label>
 
       <div class="search">
-        <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken">
+        <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken" value="">
         <a href="/capture"><img src="static\css\camera.png" alt=""></a>
       </div>
+
+      {% if detection %}
+        <p>{{ detection }}</p>
+      {% endif %}
 
       <div class="submit">
         <input class="generate" type="submit" value="Generate">

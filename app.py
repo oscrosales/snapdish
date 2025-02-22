@@ -16,6 +16,7 @@ import requests
 import random
 from gtts import gTTS
 import cv2 # run pip install opencv-python
+import main
 
 app = Flask(__name__)
 
@@ -189,6 +190,7 @@ def search():
 @app.route("/capture")
 def capture():
     window_name = "Capture Photo"
+    photo_name = "food_picture.jpg"
 
     cam = cv2.VideoCapture(0)
 
@@ -196,14 +198,15 @@ def capture():
     cam.release()
 
     cv2.imshow(window_name, photo)
-    cv2.imwrite("food_picture.jpg", photo)
-    cv2.setWindowProperty(window_name, cv2.WND_PROP_TOPMOST, 1)
+    cv2.imwrite(photo_name, photo)
 
     cv2.waitKey(5000)
     cv2.destroyAllWindows()
 
+    detection = main.show_results(photo_name, confidence_threshold=0.2)
+
     norecipe = "No recipe(s) found... Try Again!"
-    return render_template("search.html", no_results = norecipe)
+    return render_template("search.html", detection=detection)
 
 
 @app.route("/recipe/<id>")

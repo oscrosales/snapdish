@@ -10,7 +10,7 @@
     <div class="header">
       <h1><a href="/search">SnapDish</a></h1>
       {% if current_user.is_authenticated %}
-      <span class="username">Welcome, {{ current_user.username }}</span>
+      <span class="username welcome-text">Welcome, {{ current_user.username }}</span>
         <button class="myfridge-btn"><a href="{{ url_for('dashboard') }}">My Fridge</a></button>
         <button class="logout-btn"><a href="{{ url_for('logout') }}">Logout</a></button>
       {% else %}
@@ -32,20 +32,23 @@
     </form>
 
     <div class="recipe-wrapper">
-      <h2>{{ name }}</h2>
-      <body class = "recipe-body">
+      <div class = "name">
+        <h2>{{ name }}</h2>
+      </div>
+      <div class = "recipe-body">
         <div class = "box-for-image">
           <img class = "image" src="{{ image }}" alt="A picture of {{ name }}">
         </div>
-      </body>
+      </div>
 
-      <!-- If user is logged in, show fridge button :) -->
-      {% if current_user.is_authenticated %}
-      <form action="{{ url_for('add_to_fridge', meal_id=id, meal_name=name|urlencode, meal_image=image|urlencode) }}" method="post">
-        <button type="submit">Add to fridge</button>
-      </form>
-      {% endif %}
-
+      <div class = "fridge">
+        <!-- If user is logged in, show fridge button :) -->
+        {% if current_user.is_authenticated %}
+        <form action="{{ url_for('add_to_fridge', meal_id=id, meal_name=name|urlencode, meal_image=image|urlencode) }}" method="post">
+          <button type="submit">Add to fridge</button>
+        </form>
+        {% endif %}
+      </div>
 
 
       <h3>Ingredients</h3>
