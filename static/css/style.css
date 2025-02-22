@@ -19,6 +19,14 @@ h6 {
 	font-family: 'Kantumruy Pro';
 }
 
+body{
+  background: rgb(255,216,183);
+  background: linear-gradient(180deg, rgba(255,216,183,1) 40%, rgba(255,163,127,1) 100%);
+background-repeat: no-repeat; /* This ensures the gradient does not repeat */
+  background-attachment: fixed; /* This ensures the background stays in place while scrolling */
+  background-size: cover; /* This ensures the gradient covers the entire screen */
+}
+
 
 h1{
   text-align: center;
@@ -473,9 +481,10 @@ login-button:hover {
   height: 50px;
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   align-items: center;
   width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .navbar a{
@@ -485,8 +494,16 @@ login-button:hover {
 
 }
 
+
 .navbar a:hover {
   transform: scale(1.1);
   transition: transform 0.2s;
   color: white;
+}
+
+
+.icon {
+  display: inline-block;
+  transform: translateY(5px); /* Adjust this value to move the icons further down */
+  margin-right: 5px;
 }
