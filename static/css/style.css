@@ -429,8 +429,13 @@ login-button:hover {
 }
 
 .right-links a{
-  color: rgb(255, 115, 0);
+  color: black;
 }
+
+.right-links a:hover{
+  color: orangered;
+}
+
 
 .search-logo{
   width: 50px;
@@ -455,4 +460,29 @@ login-button:hover {
 
 #snapdish-search-txt:hover{
   transform: scale(1.1);
+}
+
+/* NavBAR */
+
+.navbar{
+  background-color: #D7873B;
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+.navbar a{
+  font-size: 1.5em;
+  text-align: center;
+  color: black;
+
+}
+
+.navbar a:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+  color: white;
 }
