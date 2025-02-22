@@ -33,7 +33,11 @@
 
     <div class="recipe-wrapper">
       <h2>{{ name }}</h2>
-      <img src="{{ image }}" alt="A picture of {{ name }}">
+      <body class = "recipe-body">
+        <div class = "box-for-image">
+          <img class = "image" src="{{ image }}" alt="A picture of {{ name }}">
+        </div>
+      </body>
 
       <!-- If user is logged in, show fridge button :) -->
       {% if current_user.is_authenticated %}
