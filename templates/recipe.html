@@ -30,6 +30,11 @@
 
       <img src="{{ image }}" alt="A picture of {{ name }}">
 
+      {% if current_user.is_authenticated %}
+      <button>Add to fridge</button>
+      {% endif %}
+    
+    
       <h3>Ingredients</h3>
       <ul>
         {% for ingredient in ingredients %}

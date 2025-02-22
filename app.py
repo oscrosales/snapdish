@@ -103,6 +103,10 @@ class FoodAPI():
             if ingredient and ingredient.strip() != "":
                 self.meal_ingredient.append(ingredient)
 
+# Current users
+@app.context_processor
+def inject_user():
+    return dict(current_user=current_user)
 
 @app.route("/")
 def index():
@@ -173,14 +177,15 @@ def login():
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    return f"Welcome, {current_user.username}! <a href='/logout'>Logout</a>"
+    return render_template('dashboard.html')
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
     flash('You have been logged out.', 'info')
-    return redirect(url_for('login'))
+    return render_template('logout.html')
+
 
 if __name__ == "__main__":
     with app.app_context():
