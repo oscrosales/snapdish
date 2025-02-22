@@ -1,3 +1,8 @@
+Description: This program is accessibility friendly and it uses the webcam or text input to detect an ingredient. Once the ingredient 
+has been detected, the food API pulls out 5 recipes. When we choose a recipe, we are able to use text-to-speech on the instructions.
+We use AI food detection for us to be able to detect an ingredient.
+We created a database for users that registers for the app program.
+
 SOURCES:
 
 TYPE ANIMATION: https://youtu.be/yefgBA1CecI?si=YnuEB0PdaeXfc62O
