@@ -103,5 +103,7 @@ def show_results(image_path, confidence_threshold):
     plt.tight_layout()
     plt.show()
 
-# Example usage:
-show_results('food_picture.jpg', confidence_threshold=0.2)
+    return class_name
+
+# # Example usage:
+# show_results('apple.jpg', confidence_threshold=0.2)
