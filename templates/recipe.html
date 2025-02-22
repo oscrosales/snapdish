@@ -55,7 +55,11 @@
       </ul>
 
       <h3>Instructions</h3>
-      <p>{{ instructions }}</p>
+      <ol>
+        {% for instruction in instructions %}
+          <li>{{ instruction }}.</li>
+        {% endfor %}
+      </ol>
     </div>
 </body>
 </html>

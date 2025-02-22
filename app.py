@@ -199,7 +199,7 @@ def recipe(id):
                             image=api.meal_image,
                             category=api.meal_category,
                             ingredients=api.meal_ingredient,
-                            instructions=api.meal_instructions)
+                            instructions=api.meal_instructions.split(". "))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
