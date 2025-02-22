@@ -1,14 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Kantumruy+Pro');
+
+html,
+body,
+section,
+p,
+header,
+nav,
+footer,
+div,
+article,
+aside,
+ol,
+ul,
+li,
+h1,
+h6 {
+	box-sizing: border-box;
+	font-family: 'Kantumruy Pro';
+}
+
+
 h1{
   text-align: center;
   font-size: 3rem;
 }
 
-body{
+h1 a {
+  color: black;
+}
+
+h1 a:hover {
+  color: #b7b6b6;
+  transform: scale(1.05);
+}
+
+body {
   background-color: #FFE5D1;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-a{
+a {
   text-decoration: none;
 }
 /* INDEX */
@@ -17,25 +48,25 @@ a{
 
 }
 
-.index a{
+.index a {
   text-decoration: none;
   color: black;
   font-size: large;
   font-weight: bold;
 }
 
-.index button{
+.index button {
   background-color: #E4994D;
   border-radius: 1rem;
   padding: 1rem;
 }
 
-.index button:hover{
+.index button:hover {
   background-color: #c68747;
   cursor: pointer;
 }
 
-.index img{
+.index img {
   width: 15rem;
   margin-right: auto;
   margin-left: auto;
@@ -64,15 +95,22 @@ a{
 
 .header button{
   height: 1.5rem;
-  position: relative;
-  top: 3.5rem;
-  left: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
   border-radius: 5px;
+  border: none;
+  background: none;
 }
 
-.header button:hover{
-  background-color: #b7b6b6;
+.header button a {
+  font-size: 16px;
+}
+
+.header button a:hover{
+  color: #b7b6b6;
   cursor: pointer;
+  transform: scale(1.05);
 }
 
 .search{
@@ -157,13 +195,19 @@ a{
   cursor: pointer;
 }
 
-.subheading {
-  margin: auto;
+.results ul {
+  list-style-type: none;
+  display: contents;
+}
+
+.recipe {
+  border-bottom: 1px solid black;
+  padding: 25px;
 }
 
 .meal-name {
-  list-style-type: none;
-  display: contents;
+  color: black;
+  font-size: 22px;
 }
 
 .results {

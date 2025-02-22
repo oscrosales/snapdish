@@ -11,7 +11,7 @@
 <body>
     <div class="header">
       <h1><a href="/search">SnapDish</a></h1>
-      <button><a href="/login">Log In</a></button>
+      <button class="login-btn"><a href="/login">Log In</a></button>
     </div>
 
     <form class="form" action="/search" method="post">
@@ -29,10 +29,13 @@
 
     <div class="results">
       {% if results %}
-      <h2 class="subheading">Recipes:</h2>
-        <ul class="meal-name">
+      <h2>Recipes:</h2>
+        <ul>
             {% for meal in results %}
-              <li><a href="#">{{ meal }}</a></li>
+              <li class="recipe">
+                <a class="meal-name" href="#">{{ meal }}</a><br>
+                <a href="#">view full recipe</a>
+              </li>
             {% endfor %}
         </ul>
       {% else %}
