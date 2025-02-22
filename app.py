@@ -88,20 +88,22 @@ class FoodAPI():
         response = requests.get(url)
         data = response.json()
 
+        self.meal_name = []
+        self.meal_id = []
+
         if data['meals'] is not None:  # add all meals and id's in a list
+
             meal = data['meals'][0]
-            self.meal_name = []
-            self.meal_id = []
 
             for meal in data['meals']:
                 self.meal_name.append(meal['strMeal'])
                 self.meal_id.append(meal['idMeal'])
 
             self.foundMeal = True
-            return self.meal_id, self.meal_name
         else:
             self.foundMeal = False
-            return
+
+        return self.meal_id, self.meal_name
 
     def getAllMeals(self):
         if self.foundMeal:
@@ -156,12 +158,17 @@ def search():
     if request.method == "POST":
         search = request.form["prompt"]
 
-        meal_ids, meal_names = FoodAPI(search).allMeals()
+        food = FoodAPI(search)
+        meal_ids, meal_names = food.allMeals()
 
 
-        return render_template("search.html",
-                               meal_ids=meal_ids,
-                               meal_names=meal_names)
+        if food.foundMeal == True:
+            return render_template("search.html",
+                                meal_ids=meal_ids,
+                                meal_names=meal_names)
+        else:
+            norecipe = "No recipe(s) found... Try Again!"
+            return render_template("search.html", no_results = norecipe)
 
     return render_template("search.html")
 

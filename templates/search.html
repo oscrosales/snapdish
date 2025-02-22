@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="header">
-      <h1><a href="/search">SnapDish</a></h1>
+      <h1><a href="/search"><span><img src="static\css\logo.png" alt="" class="search-logo"></span>SnapDish</a></h1>
 
       {% if current_user.is_authenticated %}
       <span class="username">Welcome, {{ current_user.username }}</span>
@@ -45,7 +45,14 @@
           {% endfor %}
       </ul>
       {% else %}
-          <p></p>
+            {% if no_results %}
+            <p class = "noresults" >{{ no_results }}</p>
+          {% else %}
+            <!-- Display the meal results here -->
+            {% for meal_name in meal_names %}
+              <p>{{ meal_name }}</p>
+            {% endfor %}
+          {% endif %}
       {% endif %}
     </div>
 
