@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="static\css\style.css">
-  <script defer src="static\script.js"></script>
-  <script src="https://kit.fontawesome.com/c31e4ff6de.js" crossorigin="anonymous"></script>
   <title>Recipe Search</title>
 </head>
 <body>
@@ -15,6 +13,7 @@
     </div>
 
     <form class="form" action="/search" method="post">
+
       <label class="ingredient-label" for="ingredient">Enter an Ingredient:</label>
 
       <div class="search">
@@ -29,7 +28,7 @@
 
     <div class="results">
       {% if meal_ids %}
-      <h2>Recipes:</h2>
+      <h1>Recipes:</h1>
       <ul>
           {% for i in range(5) %}
               <li class="recipe">

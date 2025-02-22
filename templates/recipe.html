@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="static\css\style.css">
-  <script defer src="static\script.js"></script>
-  <script src="https://kit.fontawesome.com/c31e4ff6de.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
   <title>Recipe Search</title>
 </head>
 <body>
@@ -19,7 +17,7 @@
 
       <div class="search">
         <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken, potatoes, garlic">
-        <a href="capture.html"><img src="static\css\camera.png" alt=""></a>
+        <a href="capture.html"><img src="{{ url_for('static', filename='/css/camera.png') }}" alt=""></a>
       </div>
 
       <div class="submit">
@@ -27,17 +25,20 @@
       </div>
     </form>
 
-    <h2>{{ name }}</h2>
+    <div class="recipe-wrapper">
+      <h2>{{ name }}</h2>
 
-    <img src="{{ image }}" alt="A picture of {{ name }}">
+      <img src="{{ image }}" alt="A picture of {{ name }}">
 
-    <ul>
-      {% for ingredient in ingredients %}
-        <li>{{ ingredient }}</li>
-      {% endfor %}
-    </ul>
+      <h3>Ingredients</h3>
+      <ul>
+        {% for ingredient in ingredients %}
+          <li>{{ ingredient }}</li>
+        {% endfor %}
+      </ul>
 
-    <p>{{ instructions }}</p>
-
+      <h3>Instructions</h3>
+      <p>{{ instructions }}</p>
+    </div>
 </body>
 </html>

@@ -113,6 +113,11 @@ a {
   transform: scale(1.05);
 }
 
+.ingredient-label {
+  text-align: center;
+  display: block;
+}
+
 .search{
   text-align: center;
   margin-top: -15px;
@@ -212,6 +217,10 @@ a {
 
 .results {
   text-align: center;
+}
+
+.recipe-wrapper img {
+  max-width: 18rem;
 }
 
 /* LOGIN */
