@@ -34,10 +34,6 @@ class User(db.Model, UserMixin):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-@app.route("/")
-def index():
-    return render_template("index.html")
-
 class FoodAPI():
     def __init__(self, user_input):
         self.foundMeal = False
