@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="static\css\style.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='/css/style.css') }}">
   <title>Recipe Search</title>
 </head>
 <body>
     <div class="header">
-      <h1><a href="/search"><span><img src="static\css\logo.png" alt="" class="search-logo"></span>SnapDish</a></h1>
-
+      <h1><a href="/search">SnapDish</a></h1>
       {% if current_user.is_authenticated %}
       <span class="username">Welcome, {{ current_user.username }}</span>
         <button class="myfridge-btn"><a href="{{ url_for('dashboard') }}">My Fridge</a></button>
@@ -20,12 +19,11 @@
     </div>
 
     <form class="form" action="/search" method="post">
-
       <label class="ingredient-label" for="ingredient">Enter an Ingredient:</label>
 
       <div class="search">
         <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken, potatoes, garlic">
-        <a href="capture.html"><img src="static\css\camera.png" alt=""></a>
+        <a href="capture.html"><img src="{{ url_for('static', filename='/css/camera.png') }}" alt=""></a>
       </div>
 
       <div class="submit">
@@ -33,28 +31,31 @@
       </div>
     </form>
 
-    <div class="results">
-      {% if meal_ids %}
-      <h1>Recipes:</h1>
-      <ul>
-          {% for i in range(5) %}
-              <li class="recipe">
-                  <a class="meal-name" href="{{ url_for('recipe', id=meal_ids[i]) }}">{{ meal_names[i] }}</a><br>
-                  <a href="{{ url_for('recipe', id=meal_ids[i]) }}">view full recipe</a>
-              </li>
-          {% endfor %}
-      </ul>
-      {% else %}
-            {% if no_results %}
-            <p class = "noresults" >{{ no_results }}</p>
-          {% else %}
-            <!-- Display the meal results here -->
-            {% for meal_name in meal_names %}
-              <p>{{ meal_name }}</p>
-            {% endfor %}
-          {% endif %}
-      {% endif %}
-    </div>
+    <div class="recipe-wrapper">
+      <h2>{{ name }}</h2>
 
+      <img src="{{ image }}" alt="A picture of {{ name }}">
+
+      <!-- If user is logged in, show fridge button :) -->
+      {% if current_user.is_authenticated %}
+      <form action="{{ url_for('add_to_fridge', meal_id=id, meal_name=name|urlencode, meal_image=image|urlencode) }}" method="post">
+        <button type="submit">Add to fridge</button>
+      </form>
+      {% endif %}
+
+
+
+
+
+      <h3>Ingredients</h3>
+      <ul>
+        {% for ingredient in ingredients %}
+          <li>{{ ingredient }}</li>
+        {% endfor %}
+      </ul>
+
+      <h3>Instructions</h3>
+      <p>{{ instructions }}</p>
+    </div>
 </body>
 </html>
