@@ -19,7 +19,7 @@ a{
 
 .index a{
   text-decoration: none;
-  color: antiquewhite;
+  color: black;
   font-size: large;
   font-weight: bold;
 }
@@ -104,21 +104,62 @@ a{
   padding-top: 0.5rem;
 }
 
+
+.recipe-button{
+  padding: 10px 20px;
+  background-color: #E4994D;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 10px;
+  width: 200px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  margin: 0px auto;
+}
+
+.recipe-button a{
+  color: black;
+
+}
+
+.fridgeBtn{
+  margin: 0px auto;
+  margin-bottom: 10px;
+  align-items: center;
+  display: flex;
+}
+
+.recipe-button:hover, .fridgeBtn:hover {
+  background-color: #D7873B;
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
 .generate{
   padding: 0.5rem;
   background-color: #E4994D;
-  color: antiquewhite;
+  color: black;
   font-weight: bold;
   font-size: large;
   border-radius: 10px;
   width: 15rem;
   margin-right: 3.5rem;
+  align-items: center;
+  display: flex;
 }
 
 .generate:hover{
   background-color: #c68747;
+  transform: scale(1.05);
   cursor: pointer;
 }
+
+
 
 
 /* LOGIN */
