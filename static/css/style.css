@@ -19,6 +19,14 @@ h6 {
 	font-family: 'Kantumruy Pro';
 }
 
+body{
+  background: rgb(255,216,183);
+  background: linear-gradient(180deg, rgba(255,216,183,1) 40%, rgba(255,163,127,1) 100%);
+background-repeat: no-repeat; /* This ensures the gradient does not repeat */
+  background-attachment: fixed; /* This ensures the background stays in place while scrolling */
+  background-size: cover; /* This ensures the gradient covers the entire screen */
+}
+
 
 h1{
   text-align: center;
@@ -274,6 +282,29 @@ a {
 
 }
 
+.box-for-image {
+  width: 310px;
+  height: 310px;
+  position: relative;
+  z-index: 1;
+  background-color: #E4994D;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  border: 2px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .recipe-body {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  height: 100vh;            
+  margin-top: 200px;                
+} */
+
+
 .container::before {
   content: ' ';
   position: absolute;
@@ -433,8 +464,13 @@ login-button:hover {
 }
 
 .right-links a{
-  color: rgb(255, 115, 0);
+  color: black;
 }
+
+.right-links a:hover{
+  color: orangered;
+}
+
 
 .search-logo{
   width: 50px;
@@ -459,4 +495,38 @@ login-button:hover {
 
 #snapdish-search-txt:hover{
   transform: scale(1.1);
+}
+
+/* NavBAR */
+
+.navbar{
+  background-color: #D7873B;
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 15px;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.navbar a{
+  font-size: 1.5em;
+  text-align: center;
+  color: black;
+
+}
+
+
+.navbar a:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
+  color: white;
+}
+
+
+.icon {
+  display: inline-block;
+  transform: translateY(5px); /* Adjust this value to move the icons further down */
+  margin-right: 5px;
 }

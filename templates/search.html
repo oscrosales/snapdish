@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="static\css\style.css">
+
+  <!-- google icons api -->
+  <head>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+  </head>
+  
+
   <title>Recipe Search</title>
 </head>
 <body>
@@ -16,11 +23,17 @@
           <a href="{{ url_for('dashboard') }}">My Fridge</a>
           <a href="{{ url_for('logout') }}">Log out</a>
         </div>
-
       {% else %}
       <a href="/login" class="login-btn right-links">Log In</a>
       {% endif %}
     </div>
+
+    <nav class="navbar">
+      <a href=""><span class="material-symbols-outlined icon">home</span>Home</a>
+      <a href=""><span class="material-symbols-outlined icon">group</span>About Us</a>
+      <a href=""><span class="material-symbols-outlined icon">storefront</span>Shop</a>
+      <a href=""><span class="material-symbols-outlined icon">contact_support</span>Contact</a>
+    </nav>
 
     <form class="form" action="/search" method="post">
 
