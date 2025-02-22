@@ -1,6 +1,6 @@
 """
 Title: SnapDish Web Application
-Authors: Oscar Rosales,
+Authors: Oscar, Iya, Cj, Thea
 Description:
 Date Created: Feb 21, 2025
 """
