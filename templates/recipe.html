@@ -23,7 +23,7 @@
 
       <div class="search">
         <input type="text" name="prompt" id="prompt" placeholder="e.g. chicken">
-        <a href="capture.html"><img src="{{ url_for('static', filename='/css/camera.png') }}" alt=""></a>
+        <a href="/capture"><img src="{{ url_for('static', filename='/css/camera.png') }}" alt=""></a>
       </div>
 
       <div class="submit">
@@ -56,12 +56,15 @@
       </ul>
 
       <h3>Instructions</h3>
-      <audio controls autoplay> 
+      <audio controls autoplay class="tts">
         <source src = "{{ url_for('static', filename='foodInstruction.mp3') }}" type = "audio/mpeg">
         <source src = "{{ url_for('static', filename='foodInstruction.mp3') }}" type = "audio/wav">
       </audio>
-  
-      <p>{{ instructions }}</p>
+      <ol>
+        {% for instruction in instructions %}
+          <li>{{ instruction }}.</li>
+        {% endfor %}
+      </ol>
     </div>
 </body>
 </html>

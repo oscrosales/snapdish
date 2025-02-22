@@ -242,6 +242,10 @@ a {
   font-size: 20px;
 }
 
+.tts {
+  padding-top: 25px;
+}
+
 /* LOGIN */
 /* LOGIN */
 .login {
@@ -438,9 +442,44 @@ login-button:hover {
 
 .logout-btn{
   margin-top: 20px;
+  font-size: 24px;
+
+}
+
+.right-links{
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+  margin: 5px;
+  transition: transform 0.5s;
+
+}
+
+.right-links a{
+  color: rgb(255, 115, 0);
 }
 
 .search-logo{
   width: 50px;
   padding-right: 20px;
+}
+
+.welcome-text{
+  position: absolute;
+  left: 10px;
+  font-size: 20px;
+}
+
+#snapdish-search-txt{
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 4em;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+
+  transition: transform 0.5s;
+}
+
+#snapdish-search-txt:hover{
+  transform: scale(1.1);
 }

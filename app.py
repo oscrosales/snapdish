@@ -12,8 +12,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 import requests
 import random
 from gtts import gTTS
-import io
-import os
+import cv2 # run pip install opencv-python
 
 app = Flask(__name__)
 
@@ -183,6 +182,27 @@ def search():
 
     return render_template("search.html")
 
+
+@app.route("/capture")
+def capture():
+    window_name = "Capture Photo"
+
+    cam = cv2.VideoCapture(0)
+
+    status, photo = cam.read()
+    cam.release()
+
+    cv2.imshow(window_name, photo)
+    cv2.imwrite("food_picture.jpg", photo)
+    cv2.setWindowProperty(window_name, cv2.WND_PROP_TOPMOST, 1)
+
+    cv2.waitKey(5000)
+    cv2.destroyAllWindows()
+
+    norecipe = "No recipe(s) found... Try Again!"
+    return render_template("search.html", no_results = norecipe)
+
+
 @app.route("/recipe/<id>")
 def recipe(id):
     api = FoodAPI("")
@@ -197,7 +217,7 @@ def recipe(id):
                             image=api.meal_image,
                             category=api.meal_category,
                             ingredients=api.meal_ingredient,
-                            instructions=api.meal_instructions)
+                            instructions=api.meal_instructions.split(". "))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
